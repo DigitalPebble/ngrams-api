@@ -1,3 +1,19 @@
+/**
+ * Licensed to the Apache Software Foundation (ASF) under one or more
+ * contributor license agreements.  See the NOTICE file distributed with
+ * this work for additional information regarding copyright ownership.
+ * The ASF licenses this file to You under the Apache License, Version 2.0
+ * (the "License"); you may not use this file except in compliance with
+ * the License.  You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package com.digitalpebble.ngrams;
 
 import java.io.BufferedReader;
@@ -35,19 +51,19 @@ public class NGramCorpusTester {
 		int numEntities = 0;
 
 		while ((line = reader.readLine()) != null) {
-			if (numEntities % 10000 == 0 && numEntities!=0) {
+			if (numEntities % 10000 == 0 && numEntities != 0) {
 				long l1 = System.currentTimeMillis();
-				int timesec = (int)(l1 - l0)/1000;
-				int qps = numEntities/timesec;
+				int timesec = (int) (l1 - l0) / 1000;
+				int qps = numEntities / timesec;
 				System.out.println("Obtained data for " + numEntities + " in "
-						+ (l1 - l0) + " msec ["+qps+" queries per sec]");
+						+ (l1 - l0) + " msec [" + qps + " queries per sec]");
 			}
 			int sep = line.indexOf("\t");
-			if (sep==-1) {
-				System.out.println("Incorrect input : "+line);
+			if (sep == -1) {
+				System.out.println("Incorrect input : " + line);
 				continue;
 			}
-			
+
 			String form = line.substring(0, sep);
 			String freq = line.substring(sep + 1);
 			Long expected = Long.parseLong(freq);
@@ -62,10 +78,10 @@ public class NGramCorpusTester {
 		}
 
 		long l1 = System.currentTimeMillis();
-		int timesec = (int)(l1 - l0)/1000;
-		int qps = numEntities/timesec;
+		int timesec = (int) (l1 - l0) / 1000;
+		int qps = numEntities / timesec;
 		System.out.println("Obtained data for " + numEntities + " in "
-				+ (l1 - l0) + " msec ["+qps+" queries per sec]");
+				+ (l1 - l0) + " msec [" + qps + " queries per sec]");
 	}
 
 }
